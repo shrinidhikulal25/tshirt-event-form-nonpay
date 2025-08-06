@@ -1,4 +1,3 @@
-
 document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -23,10 +22,19 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   })
     .then((res) => res.text())
     .then(() => {
-      // Show success message on the page
+      // ✅ WhatsApp message to be sent to user
+      const message = `Hi ${name},\nThank you for registering!\nYour Reg ID: ${uniqueId}\nSize: ${size}\nPay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
+      const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}`;
+
+      // ✅ Show confirmation + WhatsApp button
       const confirmationBox = document.getElementById("confirmation");
       const regIdText = document.getElementById("regIdText");
-      regIdText.textContent = `✅ Submitted! Your ID: ${uniqueId}. Pay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
+      regIdText.innerHTML = `
+        ✅ Submitted!<br>Your ID: <strong>${uniqueId}</strong><br>
+        <a href="${whatsappLink}" target="_blank" style="display:inline-block;margin-top:10px;padding:10px 15px;background:#25D366;color:white;border-radius:5px;text-decoration:none;font-weight:bold;">
+          📲 Send to WhatsApp
+        </a>
+      `;
       confirmationBox.style.display = "block";
 
       form.reset();
