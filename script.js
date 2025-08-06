@@ -1,3 +1,4 @@
+
 document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -10,36 +11,29 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   const gender = document.getElementById("gender").value;
   const size = document.getElementById("size").value;
 
+  // Generate 4-digit unique ID prefixed with 'T'
   const uniqueId = "T" + Math.floor(1000 + Math.random() * 9000);
-
-  const formData = new URLSearchParams();
-  formData.append("name", name);
-  formData.append("mobile", mobile);
-  formData.append("gender", gender);
-  formData.append("size", size);
-  formData.append("regid", uniqueId);
 
   fetch("https://script.google.com/macros/s/AKfycbzFG9oLcC_NTVQX9ahbCB3_OSkTRDCPAGqCRtf4gwR4NUghTxrLXO3PEx-VXLJ3W4G_/exec", {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}&gender=${encodeURIComponent(gender)}&size=${encodeURIComponent(size)}&regid=${uniqueId}`,
   })
     .then((res) => res.text())
-    .then((response) => {
-      if (response === "duplicate") {
-        alert("❌ This mobile number has already been registered.");
-        submitButton.disabled = false;
-        return;
-      }
-
-      // Show success
+    .then(() => {
+      // Show success message on the page
+      const confirmationBox = document.getElementById("confirmation");
       const regIdText = document.getElementById("regIdText");
       regIdText.textContent = `✅ Submitted! Your ID: ${uniqueId}. Pay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
-      document.getElementById("confirmation").style.display = "block";
+      confirmationBox.style.display = "block";
+
       form.reset();
     })
-    .catch((error) => {
-      alert("❌ Something went wrong while submitting.");
-      console.error(error);
+    .catch((err) => {
+      alert("❌ Error submitting form!");
+      console.error(err);
     })
     .finally(() => {
       submitButton.disabled = false;
