@@ -21,7 +21,7 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   })
     .then((res) => res.text())
     .then(() => {
-      alert(`✅ Submission successful!\nYour Registration ID: ${uniqueId}\nPlease pay 200/- to given Qr code on Whatsapp and send a screenshot with Registrationid.`);
+      alert(`✅ successful!\nYour ID: ${uniqueId}\nPay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`);
       form.reset();
     })
     .catch((err) => {
