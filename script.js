@@ -33,7 +33,7 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
       const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}&media=${encodeURIComponent(qrImage.src)}`;
 
       regIdText.innerHTML = `
-        ✅ Submitted!<br>Your ID: <strong>${uniqueId}</strong><br>
+        ✅ Submitted! Please Pay using QR or Press Send WhatsApp button<br>Your ID: <strong>${uniqueId}</strong><br>
         <a href="${whatsappLink}" target="_blank">📲 Send to WhatsApp</a>
       `;
 
