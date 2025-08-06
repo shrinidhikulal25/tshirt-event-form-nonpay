@@ -10,7 +10,6 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   const gender = document.getElementById("gender").value;
   const size = document.getElementById("size").value;
 
-  // Generate 4-digit unique ID prefixed with 'T'
   const uniqueId = "T" + Math.floor(1000 + Math.random() * 9000);
 
   fetch("https://script.google.com/macros/s/AKfycbzFG9oLcC_NTVQX9ahbCB3_OSkTRDCPAGqCRtf4gwR4NUghTxrLXO3PEx-VXLJ3W4G_/exec", {
@@ -22,21 +21,23 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   })
     .then((res) => res.text())
     .then(() => {
-      // ✅ WhatsApp message to be sent to user
-      const message = `Hi ${name},\nThank you for registering!\nYour Reg ID: ${uniqueId}\nSize: ${size}\nPay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
-      const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}`;
-
-      // ✅ Show confirmation + WhatsApp button
       const confirmationBox = document.getElementById("confirmation");
       const regIdText = document.getElementById("regIdText");
+      const qrImage = document.getElementById("qrImage");
+
+      // ✅ Set QR image (hosted publicly)
+      qrImage.src = "https://your-public-link.com/yourqr.png";  // replace this with your actual QR image URL
+      qrImage.style.display = "block";
+
+      const message = `Hi ${name},\nThank you for registering!\nReg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:`;
+      const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}&media=${encodeURIComponent(qrImage.src)}`;
+
       regIdText.innerHTML = `
         ✅ Submitted!<br>Your ID: <strong>${uniqueId}</strong><br>
-        <a href="${whatsappLink}" target="_blank" style="display:inline-block;margin-top:10px;padding:10px 15px;background:#25D366;color:white;border-radius:5px;text-decoration:none;font-weight:bold;">
-          📲 Send to WhatsApp
-        </a>
+        <a href="${whatsappLink}" target="_blank">📲 Send to WhatsApp</a>
       `;
-      confirmationBox.style.display = "block";
 
+      confirmationBox.style.display = "block";
       form.reset();
     })
     .catch((err) => {
