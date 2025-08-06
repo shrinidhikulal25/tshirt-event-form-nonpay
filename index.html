@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- 🌗 Light/Dark Mode Toggle -->
   <div class="theme-toggle">
-  <label class="switch">
-    <input type="checkbox" id="themeSwitcher" />
-    <span class="slider round"></span>
-  </label>
-</div>
+    <label class="switch">
+      <input type="checkbox" id="themeSwitcher" />
+      <span class="slider round"></span>
+    </label>
+  </div>
 
   <div class="container">
     <h2>ಮಹಮ್ಮಾಯಿ ಮಿತ್ರ ಮಂಡಳಿ (ರಿ.) ಕಲಾಯಿ</h2>
@@ -59,26 +61,28 @@
 
     <div id="confirmation">
       <p id="regIdText"></p>
-      <img id="qrImage" src="" alt="UPI QR Code" style="margin-top:15px; max-width:200px; display:none;" />
+      <img id="qrImage" src="" alt="UPI QR Code" />
     </div>
   </div>
 
+  <!-- Script for form + QR + WhatsApp logic -->
   <script src="script.js"></script>
+
+  <!-- 🌗 Theme Switcher Script -->
   <script>
-  const toggle = document.getElementById('themeSwitcher');
-  const body = document.body;
+    const toggle = document.getElementById('themeSwitcher');
+    const body = document.body;
 
-  // Load saved theme
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    toggle.checked = true;
-  }
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      toggle.checked = true;
+    }
 
-  toggle.addEventListener('change', () => {
-    body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-  });
-</script>
+    toggle.addEventListener('change', () => {
+      body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+  </script>
 
 </body>
 </html>
