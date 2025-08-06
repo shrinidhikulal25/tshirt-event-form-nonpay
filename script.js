@@ -10,7 +10,6 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   const gender = document.getElementById("gender").value;
   const size = document.getElementById("size").value;
 
-  // Generate 4-digit unique ID prefixed with 'T'
   const uniqueId = "T" + Math.floor(1000 + Math.random() * 9000);
 
   fetch("https://script.google.com/macros/s/AKfycbzFG9oLcC_NTVQX9ahbCB3_OSkTRDCPAGqCRtf4gwR4NUghTxrLXO3PEx-VXLJ3W4G_/exec", {
@@ -21,13 +20,15 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
     body: `name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}&gender=${encodeURIComponent(gender)}&size=${encodeURIComponent(size)}&regid=${uniqueId}`,
   })
     .then((res) => res.text())
-    .then(() => {
-      // Show success message on the page
-      const confirmationBox = document.getElementById("confirmation");
+    .then((responseText) => {
+      if (responseText === "duplicate") {
+        alert("❌ This mobile number has already been registered.");
+        return;
+      }
+
       const regIdText = document.getElementById("regIdText");
       regIdText.textContent = `✅ Submitted! Your ID: ${uniqueId}. Pay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
-      confirmationBox.style.display = "block";
-
+      document.getElementById("confirmation").style.display = "block";
       form.reset();
     })
     .catch((err) => {
