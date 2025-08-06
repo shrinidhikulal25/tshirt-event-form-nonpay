@@ -29,11 +29,11 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
       qrImage.src = "https://i.postimg.cc/TPjf10dN/Whats-App-Image-2025-08-06-at-3-33-49-PM.jpg";  // replace this with your actual QR image URL
       qrImage.style.display = "block";
 
-      const message = `Hi ${name},\nThank you for registering!\nReg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:`;
+      const message = `Hi ${name},\nThank you for registering!\nReg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR: and Send a Screenshot to this Number 0000000000`;
       const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}&media=${encodeURIComponent(qrImage.src)}`;
 
       regIdText.innerHTML = `
-        ✅ Submitted! Please Pay using QR or Press Send WhatsApp button<br>Your ID: <strong>${uniqueId}</strong><br>
+        ✅ Submitted! Please Pay using QR or Click Send WhatsApp button<br>Your ID: <strong>${uniqueId}</strong><br>
         <a href="${whatsappLink}" target="_blank">📲 Send to WhatsApp</a>
       `;
 
