@@ -26,7 +26,7 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
       const qrImage = document.getElementById("qrImage");
 
       // ✅ Set QR image (hosted publicly)
-      qrImage.src = "https://your-public-link.com/yourqr.png";  // replace this with your actual QR image URL
+      qrImage.src = "https://i.postimg.cc/TPjf10dN/Whats-App-Image-2025-08-06-at-3-33-49-PM.jpg";  // replace this with your actual QR image URL
       qrImage.style.display = "block";
 
       const message = `Hi ${name},\nThank you for registering!\nReg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:`;
