@@ -25,15 +25,18 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
       const regIdText = document.getElementById("regIdText");
       const qrImage = document.getElementById("qrImage");
 
-      // ✅ Set QR image (hosted publicly)
-      qrImage.src = "https://i.postimg.cc/TPjf10dN/Whats-App-Image-2025-08-06-at-3-33-49-PM.jpg";  // replace this with your actual QR image URL
+      // ✅ Set QR image
+      const qrLink = "https://i.postimg.cc/TPjf10dN/Whats-App-Image-2025-08-06-at-3-33-49-PM.jpg";
+      qrImage.src = qrLink;
       qrImage.style.display = "block";
 
-      const message = `Hi ${name},\nThank you for registering!\nReg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR: and Send a Screenshot to this Number 0000000000`;
-      const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}&media=${encodeURIComponent(qrImage.src)}`;
+      // ✅ Message with QR link included in text
+      const message = `Hi ${name},\nThank you for registering!\nYour Reg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:\n${qrLink}\nThen send a screenshot to: +91 81058 78959`;
+
+      const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}`;
 
       regIdText.innerHTML = `
-        ✅ Submitted! Please Pay using QR or Click Send WhatsApp button<br>Your ID: <strong>${uniqueId}</strong><br>
+        ✅ Submitted! Please pay using the QR or Click 📲 Send to WhatsApp button below<br>Your ID: <strong>${uniqueId}</strong><br>
         <a href="${whatsappLink}" target="_blank">📲 Send to WhatsApp</a>
       `;
 
