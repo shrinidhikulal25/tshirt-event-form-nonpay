@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
 }
+
 .container {
   background: #fff;
   max-width: 500px;
@@ -10,6 +11,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 input, select, button {
   width: 100%;
   padding: 10px;
@@ -17,12 +19,25 @@ input, select, button {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
 button {
   background-color: #007BFF;
   color: white;
   border: none;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #0056b3;
+}
+
+/* ✅ Confirmation Message Styling */
+#confirmation {
+  background-color: #e6ffed;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: bold;
 }

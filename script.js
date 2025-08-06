@@ -5,11 +5,12 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   const submitButton = form.querySelector("button[type='submit']");
   submitButton.disabled = true;
 
-  const name = document.getElementById("name").value;
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
   const gender = document.getElementById("gender").value;
   const size = document.getElementById("size").value;
 
-  // Generate unique ID (T + random 4-digit number)
+  // Generate 4-digit unique ID prefixed with 'T'
   const uniqueId = "T" + Math.floor(1000 + Math.random() * 9000);
 
   fetch("https://script.google.com/macros/s/AKfycbzFG9oLcC_NTVQX9ahbCB3_OSkTRDCPAGqCRtf4gwR4NUghTxrLXO3PEx-VXLJ3W4G_/exec", {
@@ -17,15 +18,20 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: `name=${encodeURIComponent(name)}&gender=${encodeURIComponent(gender)}&size=${encodeURIComponent(size)}&regid=${uniqueId}`,
+    body: `name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}&gender=${encodeURIComponent(gender)}&size=${encodeURIComponent(size)}&regid=${uniqueId}`,
   })
     .then((res) => res.text())
     .then(() => {
-      alert(`✅ successful!\nYour ID: ${uniqueId}\nPay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`);
+      // Show success message on the page
+      const confirmationBox = document.getElementById("confirmation");
+      const regIdText = document.getElementById("regIdText");
+      regIdText.textContent = `✅ Submitted! Your ID: ${uniqueId}. Pay ₹200 via QR sent on WhatsApp and send the screenshot with your ID.`;
+      confirmationBox.style.display = "block";
+
       form.reset();
     })
     .catch((err) => {
-      alert("Error submitting form!");
+      alert("❌ Error submitting form!");
       console.error(err);
     })
     .finally(() => {
