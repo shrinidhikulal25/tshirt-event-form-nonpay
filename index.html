@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+
   <div class="container">
     <h2 class="orange-title">ಮಹಮ್ಮಾಯಿ ಮಿತ್ರ ಮಂಡಳಿ (ರಿ.) ಕಲಾಯಿ</h2>
     <h2>T-Shirt Registration Form</h2>
@@ -48,19 +48,15 @@
 
       <div class="form-section">
         <button type="submit">Submit</button>
+        <div id="loadingText" style="display:none;">
+          ⏳ Submitting your details, please wait...
+        </div>
       </div>
-
-<div id="loadingText" style="display:none; text-align: center; margin-top: 10px;">
-  <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." style="width: 40px;" />
-  <p>Submitting, please wait...</p>
-</div>
-
-
     </form>
 
     <div id="confirmation">
       <p id="regIdText"></p>
-      <img id="qrImage" src="" alt="UPI QR Code" style="margin-top:15px; max-width:200px; display:none;" />
+      <img id="qrImage" src="" alt="UPI QR Code" />
     </div>
   </div>
 
