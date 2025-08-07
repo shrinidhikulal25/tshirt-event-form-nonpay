@@ -22,7 +22,7 @@ document.getElementById("tshirtForm").addEventListener("submit", function (e) {
   qrImage.src = qrLink;
   qrImage.style.display = "block";
 
-  const message = `Hi ${name},\nThank you for registering!\nYour Reg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:\n${qrLink}\nThen send a screenshot to: +91 81058 78959`;
+  const message = `Hi ${name},\nThank you for registering!\nYour Reg ID: ${uniqueId}\nSize: ${size}\nPlease pay ₹200 using this QR:\n${qrLink}\nThen send a screenshot to: +91 97434 01091`;
   const whatsappLink = `https://wa.me/91${mobile}?text=${encodeURIComponent(message)}`;
 
   regIdText.innerHTML = `
